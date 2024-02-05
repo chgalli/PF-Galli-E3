@@ -1,0 +1,129 @@
+
+<h1 mat-dialog-title>DETALLE DEL CURSO</h1>
+<div mat-dialog-content>
+    <form [formGroup]="subjectForm" class="grid formgrid">
+
+        <div class="col-4">
+            <mat-form-field class="w-full">
+                <mat-label>Nombre del curso</mat-label>
+                <input formControlName="Nombre" matInput>
+                <mat-error *ngIf="subjectForm.get('Nombre')?.invalid && (subjectForm.get('Nombre')?.dirty || subjectForm.get('Nombre')?.touched)">
+                    <span *ngIf="subjectForm.get('Nombre')?.hasError('required')">El nombre del curso es requerido.</span>
+                    <span *ngIf="subjectForm.get('Nombre')?.hasError('pattern')">Solo se permiten letras y espacios.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="col-4">
+            <mat-form-field class="w-full">
+                <mat-label>Docente</mat-label>
+                <input formControlName="Docente" matInput>
+                <mat-error *ngIf="subjectForm.get('Docente')?.invalid && (subjectForm.get('Docente')?.dirty || subjectForm.get('Docente')?.touched)">
+                    <span *ngIf="subjectForm.get('Docente')?.hasError('required')">El nombre del docente es requerido.</span>
+                    <span *ngIf="subjectForm.get('Docente')?.hasError('pattern')">Solo se permiten letras y espacios.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="col-4">
+            <mat-form-field class="w-full">
+                <mat-label>Costo</mat-label>
+                <input formControlName="Costo" matInput>
+                <mat-error *ngIf="subjectForm.get('Costo')?.invalid && (subjectForm.get('Costo')?.dirty || subjectForm.get('Costo')?.touched)">
+                    <span *ngIf="subjectForm.get('Costo')?.hasError('pattern')">Solo se permiten números.</span>
+                    <span *ngIf="subjectForm.get('Costo')?.hasError('min')">El costo debe ser mayor a 0.</span>
+                    <span *ngIf="subjectForm.get('Costo')?.hasError('required')">El costo del curso es requerido.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="col-6">
+            <mat-form-field class="w-full">
+                <mat-label>Fecha de inicio</mat-label>
+                <input formControlName="FechaInicio" matInput [matDatepicker]="fechaI">
+                <mat-datepicker-toggle matIconSuffix [for]="fechaI"></mat-datepicker-toggle>
+                <mat-datepicker #fechaI></mat-datepicker>
+                <mat-error *ngIf="subjectForm.get('FechaInicio')?.invalid && (subjectForm.get('FechaInicio')?.dirty || subjectForm.get('FechaInicio')?.touched)">
+                    <span *ngIf="subjectForm.get('FechaInicio')?.hasError('required')">La fecha de creación es requerida.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+
+        <div class="col-6">
+            <mat-form-field class="w-full">
+                <mat-label>Fecha de cierre</mat-label>
+                <input formControlName="FechaFin" matInput [matDatepicker]="fechaF">
+                <mat-datepicker-toggle matIconSuffix [for]="fechaF"></mat-datepicker-toggle>
+                <mat-datepicker #fechaF></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+
+        <div class="col-6">
+            <mat-form-field class="w-full">
+                <mat-label>Capacidad</mat-label>
+                <input formControlName="Capacidad" matInput>
+                <mat-error *ngIf="subjectForm.get('Capacidad')?.invalid && (subjectForm.get('Capacidad')?.dirty || subjectForm.get('Capacidad')?.touched)">
+                    <span *ngIf="subjectForm.get('Capacidad')?.hasError('required')">La capacidad es requerida.</span>
+                    <span *ngIf="subjectForm.get('Capacidad')?.hasError('pattern')">Solo se permiten números.</span>
+                    <span *ngIf="subjectForm.get('Capacidad')?.hasError('min')">La capacidad debe ser mayor a 0.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="col-6">
+            <mat-form-field class="w-full">
+                <mat-label>Inscriptos</mat-label>
+                <input formControlName="Inscriptos" matInput>
+                <mat-error *ngIf="subjectForm.get('Inscriptos')?.invalid && (subjectForm.get('Inscriptos')?.dirty || subjectForm.get('Inscriptos')?.touched)">
+                    <span *ngIf="subjectForm.get('Inscriptos')?.hasError('pattern')">Solo se permiten números.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="col-6">
+            <mat-form-field class="w-full">
+                <mat-label>Modalidad</mat-label>
+                <mat-select formControlName="Modalidad" placeholder="Selecciona la modalidad">
+                    <mat-option value="Presencial">Presencial</mat-option>
+                    <mat-option value="Virtual">Virtual</mat-option>
+                    <mat-option value="Híbrido">Híbrido</mat-option>
+                </mat-select>
+                <mat-error *ngIf="subjectForm.get('Modalidad')?.invalid && (subjectForm.get('Modalidad')?.dirty || subjectForm.get('Modalidad')?.touched)">
+                    <span *ngIf="subjectForm.get('Modalidad')?.hasError('required')">La modalidad es requerida.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="col-6">
+            <mat-form-field class="w-full">
+                <mat-label>Turno</mat-label>
+                <mat-select formControlName="Turno" placeholder="Selecciona el turno">
+                    <mat-option value="Mañana">Mañana</mat-option>
+                    <mat-option value="Tarde">Tarde</mat-option>
+                    <mat-option value="Noche">Noche</mat-option>
+                </mat-select>
+                <mat-error *ngIf="subjectForm.get('Turno')?.invalid && (subjectForm.get('Turno')?.dirty || subjectForm.get('Turno')?.touched)">
+                    <span *ngIf="subjectForm.get('Turno')?.hasError('required')">El turno es requerido.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        
+        <div class="col-12">
+            <mat-form-field class="w-full" style="height: 100px;">
+                <mat-label>Descripción</mat-label>
+                <input formControlName="Descripcion" matInput>
+                <mat-error *ngIf="subjectForm.get('Descripcion')?.invalid && (subjectForm.get('Descripcion')?.dirty || subjectForm.get('Descripcion')?.touched)">
+                    <span *ngIf="subjectForm.get('Descripcion')?.hasError('required')">La descripción es requerida.</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="guardar()" style="font-size: 20px;color:white;background-color: black; width: 120px">Aceptar</button>
+    <button mat-button mat-dialog-close=""  style="font-size: 20px;color:white;background-color: black; width: 120px">Cancelar</button>
+</div>

@@ -1,0 +1,36 @@
+.dashboard-container {
+  height:100vh;
+    background-color: gray;
+    width:100%;
+  }
+
+  .dashboard-sidenav{
+    width:30vh;
+    background-color:black;
+    border-width: 3px;
+    border-color:rgb(235, 232, 232);
+  }
+
+
+  .logo{
+    font-family: 'Roboto' ;
+    font-size: 40px;
+    color: rgb(199, 110, 110);
+    margin-left:15px;
+  }
+
+  .menu{
+    margin-top: 60px;
+    display: flex;
+  }
+
+  .aItem{
+    font-size: 18px;
+    color: white;
+    width:100vh;
+  }
+
+  .sItem{
+    color: white;
+    margin-left:15px;
+  }

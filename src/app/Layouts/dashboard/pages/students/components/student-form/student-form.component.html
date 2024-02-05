@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>DETALLE DEL USUARIO</h1>
+<div mat-dialog-content>
+  <form [formGroup]="userForm" class="grid formgrid">
+
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="Nombre" matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Apellido</mat-label>
+        <input formControlName="Apellido" matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Dni</mat-label>
+        <input formControlName="Dni" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Telefono</mat-label>
+        <input formControlName="Telefono" matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Correo</mat-label>
+        <input formControlName="Correo" matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Direccion</mat-label>
+        <input formControlName="Direccion" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Usuario</mat-label>
+        <input formControlName="Usuario" matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Clave</mat-label>
+        <input formControlName="Clave" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="col-4">
+      <mat-form-field class="w-full">
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="Rol">
+          <mat-option value="Estudiante">Estudiante</mat-option>
+          <mat-option value="Docente">Docente</mat-option>
+          <mat-option value="Administrador">Administrador</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="guardar()" style="font-size: 20px;color:white;background-color: black; width: 120px">Aceptar</button>
+  <button mat-button mat-dialog-close=""  style="font-size: 20px;color:white;background-color: black; width: 120px">Cancelar</button>
+</div>

@@ -1,0 +1,50 @@
+.mat-row {
+    display: flex;
+  }
+  
+  .mat-column {
+    margin-right: 10px; 
+  }
+
+  .add-student-form, .edit-student-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: rgb(25, 37, 162);
+}
+
+.contenedor-agregar{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:7%;
+}
+
+.form-container {
+    width: 1000px;
+    padding: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-field {
+    flex: 1;
+    margin-right: 15px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px; 
+}
+
+.mat-form-field {
+    margin-bottom: 15px;
+}

@@ -1,0 +1,47 @@
+
+
+<div class="flex justify-content-center mb-3" style="background-color: black; width: 140px; border-radius: 10%;" >
+    <button (click)="onCreate()" mat-button>
+      <mat-icon style="color:white;">add</mat-icon>
+     <p style="font-size: 20px;color:white;">Nuevo</p>
+    </button>
+  </div>
+  
+  <mat-tab-group style="font-size: 20px">
+    <mat-tab label="INSCRIPCIONES ACTIVAS">  
+      <div class="table-container">
+        <table mat-table class="mat-elevation-z8" [dataSource]="inscrip">
+          
+          <ng-container matColumnDef="NombreCurso">
+            <th class="headerColumn" mat-header-cell *matHeaderCellDef>CURSO</th>
+            <td mat-cell *matCellDef="let element"> {{element.NombreCurso}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="NombreAlumno">
+            <th class="headerColumn" mat-header-cell *matHeaderCellDef>ALUMNO</th>
+            <td mat-cell *matCellDef="let element"> {{element.NombreAlumno}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Acciones">
+            <th class="headerColumn" mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <button (click)="onView(element)" mat-icon-button style="color: grey">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              
+              <button (click)="onEdit(element)" mat-icon-button style="color: grey">
+                <mat-icon>edit</mat-icon>
+              </button>
+              
+              <button (click)="onDelete(element.IdInscripcion)" mat-icon-button style="color: grey">
+                <mat-icon primar>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>

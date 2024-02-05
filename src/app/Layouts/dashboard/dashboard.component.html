@@ -1,0 +1,43 @@
+<mat-drawer-container class="dashboard-container" autosize>
+    <div class="dashboard-sidenav-contenido">
+        <mat-toolbar style="background-color: black; height: 80px;">
+            <button type="button" mat-icon-button style="color:lightgrey;" (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="logo">Angular Institute</span>
+        </mat-toolbar>
+    </div>
+
+    <mat-drawer #drawer class="dashboard-sidenav" mode="side">
+        <div class="menu">
+            <mat-nav-list>
+                <a class="aItem" #homeLink="routerLinkActive" routerLinkActive [activated]="homeLink.isActive"
+                    routerLink="" mat-list-item>
+                    <span class="sItem">Inicio</span>
+                </a>
+
+                <a class="aItem" #usersLink="routerLinkActive" routerLinkActive [activated]="usersLink.isActive"
+                    routerLink="estudiantes" mat-list-item>
+                    <span class="sItem">Usuarios</span>
+                </a>
+
+                <a class="aItem" #cursosLink="routerLinkActive" routerLinkActive [activated]="cursosLink.isActive"
+                    routerLink="cursos" mat-list-item>
+                    <span class="sItem">Cursos</span>
+                </a>
+
+                <a class="aItem" #inscripcionesLink="routerLinkActive" routerLinkActive
+                    [activated]="inscripcionesLink.isActive" routerLink="inscripciones" mat-list-item>
+                    <span class="sItem">Inscripciones</span>
+                </a>
+
+                <a class="aItem" mat-list-item (click)="logout()">
+                    <span class="sItem">Logout</span>
+                </a>
+            </mat-nav-list>
+        </div>
+    </mat-drawer>
+    <div class="p-5">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>
