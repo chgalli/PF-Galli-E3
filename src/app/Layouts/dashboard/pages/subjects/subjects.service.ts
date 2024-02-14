@@ -1,53 +1,19 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, mergeMap, of } from 'rxjs';
+
 import { Cursos } from './Models';
 import { Inscripciones } from "../inscriptions/Models";
 import { Usuarios } from "../students/Models";
 
+import { enviroment } from "../../../../../enviroments/enviroment";
+
+import { InscriptionsService } from "../inscriptions/inscriptions.service";
+
 
 let cursos: Cursos[] = [
-    {
-        IdCurso: 1,
-        Nombre: 'ANGULAR',
-        FechaInicio: new Date(),
-        FechaFin: new Date(),
-        Docente: 'Ivan Roble',
-        Costo: 45000,
-        Modalidad: 'Virtual',
-        Capacidad: 100,
-        Inscriptos: 1,
-        Estado: true,
-        Descripcion: 'Primeros pasos para el desarrollo de aplicaciones web utilizando Angular',
-        Turno: "Mañana",
-    },
-    {
-        IdCurso: 2,
-        Nombre: 'SQL Server',
-        FechaInicio: new Date(),
-        FechaFin: new Date(),
-        Docente: 'Esteban Plater',
-        Costo: 32000,
-        Modalidad: 'Presencial',
-        Capacidad: 30,
-        Inscriptos: 1,
-        Estado: true,
-        Descripcion: 'Administración y gestión de base de datos SQL Server',
-        Turno: "Tarde",
-    },
-    {
-        IdCurso: 3,
-        Nombre: 'Javascript',
-        FechaInicio: new Date(),
-        FechaFin: new Date(),
-        Docente: 'Jose Tatorano',
-        Costo: 28000,
-        Modalidad: 'Virtual',
-        Capacidad: 100,
-        Inscriptos: 0,
-        Estado: true,
-        Descripcion: 'Instroducción a Javascript para el desarrollo de aplicaciones web enriquecidas',
-        Turno: "Noche",
-    },
+   
 ]
 
 let inscripciones: Inscripciones[] = []
@@ -56,31 +22,47 @@ let inscripciones: Inscripciones[] = []
 
 export class SubjectsService {
 
+    constructor(private httpClient: HttpClient, private inscriptionService: InscriptionsService) { }
+    
     getCursos() {
-        return of(cursos);
+        return this.httpClient.get<Cursos[]>(`${enviroment.apiURL}courses`);
     }
 
-    deleteSubjectByID(id: number){
-        cursos = cursos.filter((el) => el.IdCurso != id);
-        return this.getCursos();
+
+    deleteInscripcionesByID(id: string): Observable<any> {
+        return this.httpClient.delete(`${enviroment.apiURL}inscriptions/${id}`)
+            .pipe(
+                mergeMap(() => this.inscriptionService.getInscripciones()) 
+            );
     }
 
-    deleteInscripcionesByID(id:number){
-        inscripciones = inscripciones.filter((el) => el.IdInscripcion != id);
-        return of(inscripciones);
+
+    deleteSubjectByID(id: string){
+        return this.httpClient.delete(`${enviroment.apiURL}courses/${id}`)
+        .pipe(mergeMap(() => this.getCursos()));
     }
 
-    addCurso(data: Cursos) {
-        cursos = [...cursos, { ...data, IdCurso: cursos.length + 1, Estado: true, }];
-        return this.getCursos();
+    addCurso(data: Cursos) { 
+        return this.httpClient.
+        post<Usuarios>(`${enviroment.apiURL}courses`,data)
+        .pipe(mergeMap(() => this.getCursos()));
     }
 
-    updateCursos(id: number, data: Cursos){
-        cursos = cursos.map((el) => el.IdCurso === id ? {...el,...data} : el);
-        return this.getCursos();
+    updateCursos(id: string, data: Cursos) {
+        cursos = cursos.map((el) => el.id === id ? {...el, ...data} : el);
+    
+        return this.httpClient.put<Cursos>(`${enviroment.apiURL}courses/${id}`, data)
+            .pipe(
+                mergeMap(() => this.getCursos())
+            );
     }
+    
 
     comprobarAlumnos(dataC: Cursos, DataI: Inscripciones[]): Observable<Inscripciones[]> {
-        return of(DataI.filter((el) => el.IdUsuario === dataC.IdCurso));
+        return of(DataI.filter((el) => el.IDCurso === dataC.IDCurso));
+    }
+
+    comprobarCursos(dataA: Usuarios, DataI: Inscripciones[]): Observable<Inscripciones[]> {
+        return of(DataI.filter((el) => el.IDAlumno === dataA.IDUsuario));
     }
 }

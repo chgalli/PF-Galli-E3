@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatButtonModule} from '@angular/material/button';
@@ -19,6 +20,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+
+import { HttpClientModule } from '@angular/common/http';
 
 import { FullNamePipe } from '../shared/pipes/fullname.pipe';
 import { TitleSizeDirective } from '../shared/directives/TitleSize.directive';
@@ -51,10 +55,14 @@ import { TitleSizeDirective } from '../shared/directives/TitleSize.directive';
     MatListModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatCardModule,
 
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
 
+    HttpClientModule,
+    
     FullNamePipe,
     TitleSizeDirective,
   ]

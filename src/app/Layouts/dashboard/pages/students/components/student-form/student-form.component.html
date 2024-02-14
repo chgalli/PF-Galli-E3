@@ -1,4 +1,5 @@
 <h1 mat-dialog-title>DETALLE DEL USUARIO</h1>
+<div></div>
 <div mat-dialog-content>
   <form [formGroup]="userForm" class="grid formgrid">
 
@@ -6,67 +7,103 @@
       <mat-form-field class="w-full">
         <mat-label>Nombre</mat-label>
         <input formControlName="Nombre" matInput>
+        <mat-error *ngIf="userForm.get('Nombre')?.invalid && (userForm.get('Nombre')?.dirty || userForm.get('Nombre')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Nombre')?.hasError('required')">Dato requerido.</span>
+          <span *ngIf="userForm.get('Nombre')?.hasError('pattern')">Solo se permiten letras y espacios.</span>
+        </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Apellido</mat-label>
         <input formControlName="Apellido" matInput>
+        <mat-error *ngIf="userForm.get('Apellido')?.invalid && (userForm.get('Apellido')?.dirty || userForm.get('Apellido')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Apellido')?.hasError('required')">Dato requerido.</span>
+          <span *ngIf="userForm.get('Apellido')?.hasError('pattern')">Solo se permiten letras y espacios.</span>
+        </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Dni</mat-label>
         <input formControlName="Dni" matInput>
+        <mat-error *ngIf="userForm.get('Dni')?.invalid && (userForm.get('Dni')?.dirty || userForm.get('Dni')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Dni')?.hasError('required')">Dato requerido.</span>
+          <span *ngIf="userForm.get('Dni')?.hasError('pattern')">El DNI debe tener 8 dígitos numéricos.</span>
+        </mat-error>
       </mat-form-field>
     </div>
-
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Telefono</mat-label>
         <input formControlName="Telefono" matInput>
+        <mat-error *ngIf="userForm.get('Telefono')?.invalid && (userForm.get('Telefono')?.dirty || userForm.get('Telefono')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Telefono')?.hasError('required')">Dato requerido.</span>
+          <span *ngIf="userForm.get('Telefono')?.hasError('pattern')">El teléfono debe tener 10 dígitos numéricos.</span>
+        </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Correo</mat-label>
         <input formControlName="Correo" matInput>
+        <mat-error *ngIf="userForm.get('Correo')?.invalid && (userForm.get('Correo')?.dirty || userForm.get('Correo')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Correo')?.hasError('required')">Dato requerido.</span>
+          <span *ngIf="userForm.get('Correo')?.hasError('email')">Ingrese un correo válido.</span>
+        </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Direccion</mat-label>
         <input formControlName="Direccion" matInput>
+        <mat-error *ngIf="userForm.get('Direccion')?.invalid && (userForm.get('Direccion')?.dirty || userForm.get('Direccion')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Direccion')?.hasError('required')">Dato requerido.</span>
+        </mat-error>
       </mat-form-field>
     </div>
-
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Usuario</mat-label>
         <input formControlName="Usuario" matInput>
+        <mat-error *ngIf="userForm.get('Usuario')?.invalid && (userForm.get('Usuario')?.dirty || userForm.get('Usuario')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Usuario')?.hasError('required')">Dato requerido.</span>
+        </mat-error>
       </mat-form-field>
     </div>
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Clave</mat-label>
         <input formControlName="Clave" matInput>
+        <mat-error *ngIf="userForm.get('Clave')?.invalid && (userForm.get('Clave')?.dirty || userForm.get('Clave')?.touched)" style="color: red;">
+          <span class="valid" *ngIf="userForm.get('Clave')?.hasError('required')">Dato requerido.</span>
+        </mat-error>
       </mat-form-field>
     </div>
-
+    
     <div class="col-4">
       <mat-form-field class="w-full">
         <mat-label>Rol</mat-label>
         <mat-select formControlName="Rol">
           <mat-option value="Estudiante">Estudiante</mat-option>
-          <mat-option value="Docente">Docente</mat-option>
           <mat-option value="Administrador">Administrador</mat-option>
         </mat-select>
+        <mat-error *ngIf="userForm.get('Rol')?.invalid && (userForm.get('Rol')?.dirty || userForm.get('Rol')?.touched)" style="color: red;">
+          <span class="valid">Dato requerido</span>
+        </mat-error>
       </mat-form-field>
     </div>
-
+    
   </form>
 </div>
-<div mat-dialog-actions>
+<div class="buttonArea"  mat-dialog-actions>
   <button mat-button (click)="guardar()" style="font-size: 20px;color:white;background-color: black; width: 120px">Aceptar</button>
   <button mat-button mat-dialog-close=""  style="font-size: 20px;color:white;background-color: black; width: 120px">Cancelar</button>
 </div>

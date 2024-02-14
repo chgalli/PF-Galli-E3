@@ -1,12 +1,15 @@
 import { Component , Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { StudentsService } from '../../students.service';
-import Swal from 'sweetalert2';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+import Swal from 'sweetalert2';
+
 import { Usuarios } from '../../Models';
-import { InscriptionsService } from '../../../inscriptions/inscriptions.service';
 import { Inscripciones } from '../../../inscriptions/Models';
+
+import { InscriptionsService } from '../../../inscriptions/inscriptions.service';
+import { StudentsService } from '../../students.service';
+import { AuthService } from '../../../../../auth/auth.service';
 
 
 @Component({
@@ -21,12 +24,14 @@ export class StudentFormComponent {
   inscripciones: any[] = [];
   inscripcionesAlumno: any[] = [];
   viewMode: boolean;
+  authUser: any;
 
   constructor(private fb: FormBuilder,
     private dialogRef: MatDialogRef<StudentFormComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { usuario: Usuarios, view: boolean, edit: boolean },
     private studentsService: StudentsService,
-    private inscriptionsService: InscriptionsService){
+    private inscriptionsService: InscriptionsService,
+    private authService: AuthService){
       this.viewMode = this.data.view;
       this.userForm = this.fb.group({
         Nombre: ['', [Validators.required, Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ -]+$')]],
@@ -61,30 +66,19 @@ export class StudentFormComponent {
 
     ngOnInit(): void {
       this.obtenerCursos();
+      this.authUser = this.authService.authUser;
     }
     
     obtenerCursos(): void {
-      // Obtener datos de usuarios
       this.studentsService.getUsuarios().subscribe({
         next: (usuarios: Usuarios[]) => {
-          // Utiliza los datos de usuarios aquí según sea necesario
-    
-          // Luego, obtén los datos de inscripciones
           this.inscriptionsService.getInscripciones().subscribe({
             next: (inscripciones: any[]) => {
-
-              // Utiliza los datos de inscripciones aquí según sea necesario
               this.inscripciones = inscripciones;
-    
-              // Busca el usuario actual dentro de los usuarios obtenidos
-              const usuarioActual = usuarios.find(user => user.IdUsuario === this.data.usuario.IdUsuario);
+              const usuarioActual = usuarios.find(user => user.IDUsuario === this.data.usuario.IDUsuario);
               if (usuarioActual) {
-
-                // Si se encuentra el usuario, llama a la función para comprobar los cursos
                 this.studentsService.comprobarCursos(usuarioActual, inscripciones).subscribe({
                   next: (inscripcionesAlumno: any[]) => {
-
-                    // Asigna los cursos del alumno a la propiedad correspondiente
                     this.inscripcionesAlumno = inscripcionesAlumno;
                   },
                   error: (error) => {
@@ -104,10 +98,12 @@ export class StudentFormComponent {
       });
     }
     
+    
+
     guardar(): void {
       if (this.userForm.invalid) {
         this.markFormGroupTouched(this.userForm);
-        this.showErrorMessage('Por favor, complete todos los campos correctamente.');
+        this.showErrorMessage('Completar todos los campos correctamente.');
         return;
       }
       this.dialogRef.close(this.userForm.value);
@@ -130,14 +126,37 @@ export class StudentFormComponent {
       });
     }
 
-    onDelete(id: number) {
-      this.inscriptionsService.deleteInscripcionesByID(id).subscribe({
-        next: () => {
-          // Después de eliminar la inscripción, actualiza la lista de inscripciones del alumno
-          this.obtenerCursos();
-        },
-        error: (error) => {
-          console.error('Error al eliminar la inscripción:', error);
+    onDelete(data: Inscripciones) {
+      Swal.fire({
+        title: '¿Está seguro?',
+        text: 'Esta acción no se podrá revertir',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, borrar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.inscriptionsService.deleteInscripcionesByID(data.id).subscribe({
+            next: () => {
+              this.obtenerCursos();
+              Swal.fire({
+                icon: 'success',
+                title: 'Baja exitosa',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            },
+            error: (error) => {
+              console.error('Error al eliminar la inscripción:', error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Se detectó un error al borrar la inscripción.'
+              });
+            }
+          });
         }
       });
     }

@@ -1,6 +1,6 @@
 
 <div class="flex justify-content-center mb-3" style="background-color: black; width: 140px; border-radius: 10%;" >
-  <button (click)="onCreate()" mat-button>
+  <button *ngIf="authUser && authUser.Rol === 'Administrador'" (click)="onCreate()" mat-button>
     <mat-icon style="color:white;">add</mat-icon>
    <p style="font-size: 20px;color:white;">Nuevo</p>
   </button>
@@ -27,26 +27,21 @@
           <td mat-cell *matCellDef="let element"> {{element.FechaFin | date: "dd/MM/YYY" }} </td>
         </ng-container>
     
-        <ng-container matColumnDef="Modalidad">
-          <th class="headerColumn" mat-header-cell *matHeaderCellDef>MODALIDAD</th>
-          <td mat-cell *matCellDef="let element"> {{element.Modalidad}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Turno">
-          <th class="headerColumn" mat-header-cell *matHeaderCellDef>TURNO</th>
-          <td mat-cell *matCellDef="let element"> {{element.Turno}} </td>
-        </ng-container>
-
+        <!-- <ng-container matColumnDef="Costo">
+          <th mat-header-cell *matHeaderCellDef> Costo </th>
+          <td mat-cell *matCellDef="let element"> {{element.Costo | currency}} </td>
+        </ng-container> -->
+        
         <ng-container matColumnDef="Acciones">
           <th class="headerColumn" mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
             <button (click)="onView(element)" mat-icon-button>
               <mat-icon style="color: grey">visibility</mat-icon>
             </button>
-            <button (click)="onEdit(element)" mat-icon-button>
-              <mat-icon style="color: grey">edit</mat-icon>
+            <button *ngIf="authUser && authUser.Rol === 'Administrador'" (click)="onEdit(element)" mat-icon-button>
+                          <mat-icon style="color: grey">edit</mat-icon>
             </button>
-            <button (click)="onDelete(element.IdUsuario)" mat-icon-button>
+            <button *ngIf="authUser && authUser.Rol === 'Administrador'" (click)="onDelete(element)" mat-icon-button>
               <mat-icon primar style="color: grey">delete</mat-icon>
             </button>
           </td>

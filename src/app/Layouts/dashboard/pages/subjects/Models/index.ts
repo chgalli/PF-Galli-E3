@@ -1,5 +1,5 @@
 export interface Cursos{
-    IdCurso: number;
+    IDCurso: number;
     Nombre: string;
     FechaInicio: Date;
     FechaFin: Date;
@@ -11,4 +11,5 @@ export interface Cursos{
     Estado: boolean;
     Descripcion: string;
     Turno: string;
+    id: string;
 }

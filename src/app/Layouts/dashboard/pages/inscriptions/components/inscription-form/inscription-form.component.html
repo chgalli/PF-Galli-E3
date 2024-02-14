@@ -1,4 +1,5 @@
 <h1 mat-dialog-title>DETALLE DE LA INSCRIPCION</h1>
+<div></div>
 <div mat-dialog-content>
     <form [formGroup]="inscriptionForm" class="grid formgrid">
       <div class="col-6">
@@ -18,8 +19,7 @@
         </mat-form-field>
       </div>
       
-
-      <div class="col-6">
+      <!-- <div class="col-6">
         <mat-form-field class="w-full">
           <mat-label>Modalidad</mat-label>
           <input formControlName="Modalidad" matInput [disabled]="true">
@@ -31,10 +31,11 @@
           <mat-label>Turno</mat-label>
           <input formControlName="Turno" matInput [disabled]="true">
         </mat-form-field>
-      </div>
+      </div> -->
+
     </form>
 </div>
-<div mat-dialog-actions>
+<div class="buttonArea" mat-dialog-actions>
   <button mat-button (click)="guardar()" style="font-size: 20px;color:white;background-color: black; width: 120px">Aceptar</button>
   <button mat-button mat-dialog-close=""  style="font-size: 20px;color:white;background-color: black; width: 120px">Cancelar</button>
 </div>

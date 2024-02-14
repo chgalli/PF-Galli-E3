@@ -16,11 +16,6 @@
               <td mat-cell *matCellDef="let element"> {{element| fullName }} </td>
             </ng-container>
     
-            <ng-container matColumnDef="Telefono">
-              <th class="headerColumn" mat-header-cell *matHeaderCellDef>TELEFONO</th>
-              <td mat-cell *matCellDef="let element"> {{element.Telefono}} </td>
-            </ng-container>
-  
             <ng-container matColumnDef="Correo">
               <th class="headerColumn" mat-header-cell *matHeaderCellDef>MAIL</th>
               <td mat-cell *matCellDef="let element"> {{element.Correo}} </td>
@@ -37,10 +32,10 @@
                 <button (click)="onView(element)" mat-icon-button>
                   <mat-icon style="color: grey">visibility</mat-icon>
                 </button>
-                <button (click)="onEdit(element)" mat-icon-button>
+                <button *ngIf="authUser && authUser.Rol === 'Administrador'" (click)="onEdit(element)" mat-icon-button>
                   <mat-icon style="color: grey">edit</mat-icon>
                 </button>
-                <button (click)="onDelete(element.IdUsuario)" mat-icon-button>
+                <button *ngIf="authUser && authUser.Rol === 'Administrador'" (click)="onDelete(element)" mat-icon-button>
                   <mat-icon style="color: grey" primar>delete</mat-icon>
                 </button>
               </td>

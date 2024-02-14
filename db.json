@@ -1,0 +1,139 @@
+{
+  "users": [
+    {
+      "IDUsuario": 1,
+      "Nombre": "Lucas",
+      "Apellido": "Keaton",
+      "Telefono": "1187651098",
+      "Correo": "lucas.keaton@mail.com",
+      "Dni": "45859614",
+      "Direccion": "Portello 2190",
+      "Usuario": "lucask",
+      "Clave": "1234",
+      "Rol": "Administrador",
+      "id": "aq67"
+    },
+    {
+      "IDUsuario": 2,
+      "Nombre": "Ivan",
+      "Apellido": "Pineda",
+      "Telefono": "1145820014",
+      "Correo": "ivan.pineda@mail.com",
+      "Dni": "36587401",
+      "Direccion": "Cramer 741",
+      "Usuario": "ivanp",
+      "Clave": "1234",
+      "Rol": "Estudiante",
+      "id": "pr77"
+    },
+    {
+      "IDUsuario": 3,
+      "Nombre": "Carlos",
+      "Apellido": "Peterson",
+      "Dni": "20458547",
+      "Telefono": "1125458700",
+      "Correo": "carlos.peterson@mail.com",
+      "Direccion": "Terranova 9747",
+      "Usuario": "carlosp",
+      "Clave": "1234",
+      "Rol": "Estudiante",
+      "id": "0c9d"
+    },
+    {
+      "IDUsuario": 4,
+      "Nombre": "Matias",
+      "Apellido": "Virl",
+      "Dni": "20548754",
+      "Telefono": "1178458547",
+      "Correo": "matias.virl@mail.com",
+      "Direccion": "Fermilan 109",
+      "Usuario": "matiasv",
+      "Clave": "1234",
+      "Rol": "Estudiante",
+      "id": "fh98"
+    },
+    {
+      "IDUsuario": 5,
+      "Nombre": "Maria",
+      "Apellido": "Vallejos",
+      "Dni": "78548745",
+      "Telefono": "1101248021",
+      "Correo": "maria.vallejos@mail.com",
+      "Direccion": "Membrillar 276",
+      "Usuario": "mariav",
+      "Clave": "1234",
+      "Rol": "Estudiante",
+      "id": "qc9d"
+    },
+    {
+      "IDUsuario": 6,
+      "Nombre": "Laura",
+      "Apellido": "Antoman",
+      "Dni": "45820214",
+      "Telefono": "1112514870",
+      "Correo": "laura.antoman@mail.com",
+      "Direccion": "Andoguirre 4581",
+      "Usuario": "lauraa",
+      "Clave": "1234",
+      "Rol": "Estudiante",
+      "id": "uw54"
+    }
+  ],
+  "courses": [
+    {
+      "Nombre": "Phyton",
+      "FechaInicio": "2024-04-01T12:00:00.000Z",
+      "FechaFin": "2024-06-30T12:00:00.000Z",
+      "Docente": "Daniel Pitar",
+      "Capacidad": 100,
+      "Inscriptos": 0,
+      "Descripcion": "Introduccion a Python",
+      "Costo": 40000,
+      "Modalidad": "Virtual",
+      "Turno": "Tarde",
+      "id": "sq21"
+    },
+    {
+      "Nombre": "Angular desde cero",
+      "FechaInicio": "2024-05-01T12:00:00.000Z",
+      "FechaFin": "2024-06-30T12:00:00.000Z",
+      "Docente": "Walter Dublin",
+      "Capacidad": "20",
+      "Inscriptos": "1",
+      "Descripcion": "Desarrollo de aplicaciones web",
+      "Costo": "120000",
+      "Modalidad": "Presencial",
+      "Turno": "Mañana",
+      "id": "tq23"
+    },
+    {
+      "Nombre": "Big data",
+      "FechaInicio": "2024-07-01T12:00:00.000Z",
+      "FechaFin": "2024-08-30T12:00:00.000Z",
+      "Docente": "Walter Dublin",
+      "Capacidad": "100",
+      "Inscriptos": "1",
+      "Descripcion": "Analisis y explotación de datos",
+      "Costo": "135000",
+      "Modalidad": "Virtual",
+      "Turno": "Noche",
+      "id": "ac55"
+    }
+  ],
+  "inscriptions": [
+    {
+      "NombreCurso": "Angular desde cero",
+      "NombreAlumno": "Matias Virl",
+      "Modalidad": "Presencial",
+      "Turno": "Noche",
+      "id": "bv47"
+    },
+    {
+      "NombreCurso": "Big data",
+      "NombreAlumno": "Maria Vallejos",
+      "Modalidad": "Virtual",
+      "Turno": "Mañana",
+      "id": "fg21"
+    }
+  ]
+}

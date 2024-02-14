@@ -1,5 +1,5 @@
 export interface Usuarios{
-    IdUsuario: number;
+    IDUsuario: number;
     Nombre: string;
     Apellido: string;
     Dni: string;
@@ -9,4 +9,5 @@ export interface Usuarios{
     Usuario: string;
     Clave: string;
     Rol: string;
+    id: string
 }
